@@ -16,7 +16,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText name, email, phone, password;
+    EditText name,surname, email, phone, password;
     Button register;
     TextView login;
     boolean isNameValid, isEmailValid, isPhoneValid, isPasswordValid;
@@ -28,6 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         name = (EditText) findViewById(R.id.name);
+        surname= (EditText) findViewById(R.id.surname);
         email = (EditText) findViewById(R.id.email);
         phone = (EditText) findViewById(R.id.phone);
         password = (EditText) findViewById(R.id.password);
@@ -100,6 +101,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         if (isNameValid && isEmailValid && isPhoneValid && isPasswordValid) {
             Toast.makeText(getApplicationContext(), "Successfully Registered!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getBaseContext(), MainNavigation.class);
+            intent.putExtra("Name", name.getText().toString());
+            intent.putExtra("Email",email.getText().toString());
+            intent.putExtra("Phone", phone.getText().toString());
+            intent.putExtra("Pass", password.getText().toString());
+            startActivity(intent);
         }
 
     }
